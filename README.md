@@ -1,0 +1,2 @@
+# StrapiShoppingCart
+Shopping Cart
