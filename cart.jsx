@@ -105,7 +105,7 @@ const Products = (props) => {
     if(item[0].instock== 0) return;
     
       console.log(`add to Cart ${JSON.stringify(item)}`);
-      item[0].instock =item[0].instock -1;
+      item[0].instock --;
       //setItems([...items,item]);
       setCart([...cart, ...item]);
   };
@@ -122,13 +122,13 @@ const Products = (props) => {
   const photos = ["apple.png", "orange.png", "beans.png", "cabbage.png"];
   console.log(items);
   let list = items.map((item, index) => {
-    //let n = index + 1049;
-    //let url = "https://picsum.photos/id/" + n + "/50/50";
+    let n = index + 1049;
+    let uhit = "https://picsum.photos/id/" + n + "/50/50";
 
     return (
       <li key={index}>   
         <div class = "productList">
-        <Image class="productImage" src={photos[index % 4]} width={70} roundedCircle></Image>
+        <Image class="productImage" src={uhit} width={70} roundedCircle></Image>
           <div>{item.name}<br/>quantity: {item.instock}<br/>$ {item.cost} </div>
        
           <Button name={item.name} type="submit" onClick={addToCart} value="Add To Cart">Add to Cart</Button>
