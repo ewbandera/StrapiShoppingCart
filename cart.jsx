@@ -126,12 +126,14 @@ const Products = (props) => {
     //let url = "https://picsum.photos/id/" + n + "/50/50";
 
     return (
-      <li key={index}>
-        <Image src={photos[index % 4]} width={70} roundedCircle></Image>
-        <Button variant="primary" size="large">
-        {item.name}:${item.cost}-Stock={item.instock}
-        </Button>
-        <input name={item.name} type="submit" onClick={addToCart}></input>
+      <li key={index}>   
+        <div class = "productList">
+        <Image class="productImage" src={photos[index % 4]} width={70} roundedCircle></Image>
+          <div>{item.name}<br/>quantity: {item.instock}<br/>$ {item.cost} </div>
+       
+          <Button name={item.name} type="submit" onClick={addToCart} value="Add To Cart">Add to Cart</Button>
+          
+        </div>
       </li>
     );
   });
