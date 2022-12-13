@@ -1,7 +1,7 @@
 // simulate getting products from DataBase
 const products = [
-  { name: "Apples_:", country: "Italy", cost: 3, instock: 10 },
-  { name: "Oranges:", country: "Spain", cost: 4, instock: 3 },
+  { name: "Apples", country: "Italy", cost: 3, instock: 10 },
+  { name: "Oranges", country: "Spain", cost: 4, instock: 3 },
   { name: "Beans__:", country: "USA", cost: 2, instock: 5 },
   { name: "Cabbage:", country: "USA", cost: 1, instock: 8 },
 ];
@@ -127,8 +127,8 @@ const Products = (props) => {
 
     return (
       <li key={index}>   
-        <div class = "productList">
-        <Image class="productImage" src={uhit} width={70} roundedCircle></Image>
+        <div className = "productList">
+        <Image className="productImage" src={uhit} width={70} roundedCircle></Image>
           <div>{item.name}<br/>quantity: {item.instock}<br/>$ {item.cost} </div>
        
           <Button name={item.name} type="submit" onClick={addToCart} value="Add To Cart">Add to Cart</Button>
@@ -187,8 +187,17 @@ const Products = (props) => {
     console.log(JSON.stringify(data));
     let newItems = data.map((item)=> {
       let {name,country,cost,instock}=item;
-      return {name, country, cost, instock};
+      let foundItem = false;
+      items.forEach((existingItem)=>{
+        if (existingItem.name==item.name){
+          existingItem.instock+=item.instock;
+          foundItem=true;
+        }
+      });
+      return !foundItem && {name, country, cost, instock};
     });
+    newItems = newItems.filter((item)=> item!=false); //was populating false items, now removing them from the array
+    
     setItems([...items, ...newItems]);
 
   };
